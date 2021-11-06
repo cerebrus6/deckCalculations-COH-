@@ -41,5 +41,5 @@ function millisecondsToDate(today) {
 
 	return resultingMonth.concat(" ", today.getDate(), ", ", today.getFullYear(), " ", ((today.getHours()<10)?"0".concat(today.getHours()):today.getHours()), ":", ((today.getMinutes()<10)?"0".concat(today.getMinutes()):today.getMinutes()), ":", ((today.getSeconds()<10)?"0".concat(today.getSeconds()):today.getSeconds()));
 }
-
+startTimeCaclulator();
 module.exports = startTimeCaclulator;

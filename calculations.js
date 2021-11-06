@@ -21,6 +21,9 @@ const fs = require("fs");
 	warmachine(data);	// Check if warmachine have exceeded maximum capacity
 	illusory(data);		// Check if illusory have exceeded maximum capacity
 
+	// Time stamp when this program created the data.json
+	data.date = millisecondsToDate(new Date(Date.now()));
+
 	// Write data to data.json and deck text into deckText.txt
 	fs.writeFileSync("data.json", JSON.stringify(data), "utf-8", (err, data) => {return data});
 	let printData = printing(data);
@@ -34,6 +37,13 @@ function backupFileName() {
 	let time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
 	let dateTime = date + '_' + time;
 	return dateTime;
+}
+
+function millisecondsToDate(today) {
+	let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	let resultingMonth = months[today.getMonth()];
+
+	return resultingMonth.concat(" ", today.getDate(), ", ", today.getFullYear(), " ", ((today.getHours()<10)?"0".concat(today.getHours()):today.getHours()), ":", ((today.getMinutes()<10)?"0".concat(today.getMinutes()):today.getMinutes()), ":", ((today.getSeconds()<10)?"0".concat(today.getSeconds()):today.getSeconds()));
 }
 
 // 
@@ -115,16 +125,16 @@ function warmachine(obj) {
 }
 
 function printing(obj) {
-		let numOfCollectives = (obj.illusory.activated==true)?obj.collectives+calculateUnits(getTime(obj.warmachine.startTime)[0], 24, 1500):obj.collectives
-		let numOfDefenders = (obj.illusory.activated==true)?obj.defenders+calculateUnits(getTime(obj.illusory.startTime)[0], 24, 1500):obj.defenders		
+		let numOfCollectives = (obj.warmachine.activated===true)?(obj.collectives+calculateUnits(getTime(obj.warmachine.startTime)[0], 24, 1500)):obj.collectives
+		let numOfDefenders = (obj.illusory.activated===true)?(obj.defenders + calculateUnits(getTime(obj.illusory.startTime)[0], 24, 15000)):obj.defenders
 		let str = `a;\n@${obj.player}\n—:Clone:Clones | ${putCommas(obj.clones)} |—:Collective:Collective | ${putCommas(numOfCollectives)} |—:Defender:Defenders | ${putCommas(numOfDefenders)} |\n—| PROXIES • 3/3 (Full)\n:`
 		if(obj.illusory.activated == true) {
-			str += `Habit: Illusory —\n\`\`\`Activated — ${getTime(obj.illusory.startTime)[0]}.${getTime(obj.illusory.startTime)[1]}/720 Hours • ${putCommas(calculateUnits(getTime(obj.illusory.startTime)[0], 24, 1500))}/450,000 Defenders Collected\`\`\``
+			str += `Habit: Illusory —\n\`\`\`Activated — ${getTime(obj.illusory.startTime)[0]}.${getTime(obj.illusory.startTime)[1]}/720 Hours • ${putCommas(calculateUnits(getTime(obj.illusory.startTime)[0], 24, 15000))}/450,000 Defenders Collected\`\`\``
 		}
 		if(obj.warmachine.activated == true) {
 			str += `:Protosthetic: Warmachine —\n\`\`\`Activated — ${getTime(obj.warmachine.startTime)[0]}.${getTime(obj.warmachine.startTime)[1]}/720 Hours • ${putCommas(calculateUnits(getTime(obj.warmachine.startTime)[0], 24, 1500))}/45,000 Collectives Collected\`\`\`@:o:Genetoware's `
 		}
-		str += `:Void:Void x1\n\n:Coins:Coins \`${putCommas(obj.coins)}\`\n:Chances:Chances \`${putCommas(obj.chances)}\`\n\n\`\`\`UNIT PROPERTIES\n—AUTOHP ${putCommas(totalOffense(obj.clones, obj.defenders))} | Total Offense • ${obj.collectives*(3+obj.offenseBonus)} |— Casualties ${putCommas(obj.casualties)} | Conquered ${putCommas(obj.conquered)} |\`\`\``;
+		str += `:Void:Void x1\n\n:Coins:Coins \`${putCommas(obj.coins)}\`\n:Chances:Chances \`${putCommas(obj.chances)}\`\n\n\`\`\`UNIT PROPERTIES\n—AUTOHP ${putCommas(totalOffense(obj.clones, numOfDefenders))} | Total Offense • ${numOfCollectives*(3+obj.offenseBonus)} |— Casualties ${putCommas(obj.casualties)} | Conquered ${putCommas(obj.conquered)} |\`\`\``;
 		return str;
 }
 

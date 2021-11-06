@@ -1,0 +1,5 @@
+{"player":"cerebrus6#7007","clones":4506000,"collectives":1863,"defenders":55400,"illusory":{"activated":true,"startTime":"November 2, 2021 9:35:00"},"warmachine":{"activated":true,"startTime":"November 5, 2021 02:18:00"},"coins":1371000,"chances":6,"casualties":237,"conquered":6301,"offenseBonus":0,"date":"November 6, 2021 17:02:51"}
+
+{"player":"Dabking#9627","clones":22308850,"collectives":2650,"defenders":110500,"illusory":{"activated":true,"startTime":"October 28, 2021 16:27:30"},"warmachine":{"activated":true,"startTime":"November 1, 2021 06:28:40"},"coins":7482500,"chances":0,"casualties":0,"conquered":35236,"offenseBonus":1,"date":"November 6, 2021 17:02:22"}
+
+{"player":"Princess-Lana#5657","clones":19294500,"collectives":2050,"defenders":21650,"illusory":{"activated":true,"startTime":"November 5, 2021 20:30:04"},"warmachine":{"activated":true,"startTime":"November 2, 2021 05:49:19"},"coins":1481175,"chances":0,"casualties":0,"conquered":48428,"offenseBonus":1,"date":"November 6, 2021 17:34:00"}
