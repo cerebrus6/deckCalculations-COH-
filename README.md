@@ -1,0 +1,1 @@
+The collectives and defenders inputted in data.json must exclude the gains from the proxies
