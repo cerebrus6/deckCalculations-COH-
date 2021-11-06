@@ -17,9 +17,11 @@ const fs = require("fs");
 	commands(data, separatorForCommands(commandList))
 	console.log(data);
 
-	// Write to 
+	// Write data to data.json and deck text into deckText.txt
 	fs.writeFileSync("data.json", JSON.stringify(data), "utf-8", (err, data) => {return data});
-	fs.writeFileSync("deckText.txt", printing(data), "utf-8", (err, data) => {return data});
+	let printData = printing(data)
+	fs.writeFileSync("deckText.txt", printData, "utf-8", (err, data) => {return data});
+	console.log(printData);
 }());
 
 function backupFileName() {
@@ -42,9 +44,9 @@ function subtractTo(num, obj, property) {
 		obj[property] -= num;
 }
 
-// Command Structure: keyword ammount to property
+// Command Structure: keyword ammount property
 // add 10000 collectives
-// add 1 coins
+// subtract 2 coins
 function separatorForCommands(commandFile) {
 	let arr = commandFile.split(/\r?\n/);
 	for(let i = 0; i < arr.length; i++) {
@@ -56,7 +58,6 @@ function separatorForCommands(commandFile) {
 }
 
 // This loops through every command
-// Use Separator for commans
 function commands(obj, commandList) {
 	for(let i = 0; i < commandList.length; i++) {
 		executeCommand(obj, commandList[i]);
@@ -76,6 +77,7 @@ function executeCommand(obj, commandArray) {
 	}
 }
 
+// Get the hours and minutes of the duration a proxy is running
 function getTime(startTime) {
 	let startingTime = Date.parse(new Date(startTime));
 	let currentTime = Date.now();
@@ -86,7 +88,7 @@ function getTime(startTime) {
 	return [hh, mm];
 }
 
-// Example: To calculate units
+// Example: To calculate units for warmachine
 // calculateUnits(50, 24, 15000)
 function calculateUnits(totalTime, time, unitsPerTime) {
 	return Math.floor(totalTime/time)*unitsPerTime;

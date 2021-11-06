@@ -1,0 +1,5 @@
+add amount property 		implemented
+subtract amount property 	implemented
+changeInt					to implement
+changeString				to implement
+changeBool					to implement
