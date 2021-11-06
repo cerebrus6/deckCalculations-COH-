@@ -1,0 +1,23 @@
+{
+  "name": "deck-calculator-coh",
+  "version": "1.0.0",
+  "description": "A tool to help calculate deck values",
+  "main": "calculations.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cerebrus6/deckCalculations-COH-.git"
+  },
+  "keywords": [
+    "COH",
+    "Calculator"
+  ],
+  "author": "cerebrus6",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cerebrus6/deckCalculations-COH-/issues"
+  },
+  "homepage": "https://github.com/cerebrus6/deckCalculations-COH-#readme"
+}
